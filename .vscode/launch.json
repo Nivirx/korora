@@ -23,9 +23,9 @@
                 {
                     "coreIndex": 0,
                     "programBinary": "target/thumbv8m.main-none-eabihf/debug/korora",
-                    "rttEnabled": true
-                    // Uncomment this if you have the svd
-                    // "svdFile": "./.vscode/rp2350.svd",
+                    "rttEnabled": true,
+                    // https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2350/hardware_regs/RP2350.svd
+                    "svdFile": ".vscode/rp2350.svd",
                 }
             ],
             "consoleLogLevel": "Info", //Error, Warn, Info, Debug, Trace
