@@ -1,12 +1,10 @@
-# Template for embassy rp2350 projects
+# Korora RTOS
 
-This template is intended as a starting point for writing your own firmware based on the embassy libraries for the rp2350 w/ the CYW43 wireless module (rPi Pico2W)
+This project is a hobby RTOS (and my Rust scratch pad for the Pico2W).
 
 It includes all of the `knurling-rs` tooling as showcased in <https://github.com/knurling-rs/app-template> (`defmt`, `defmt-rtt`, `panic-probe`, `flip-link`) to make development as easy as possible.
 
 `probe-rs` in SWD mode is configured as the default runner, so you can run your binary with
-
-`this is an in progress port of the much better supported (by upstream libraries) rp2040 embassy template, stuff is broken`
 
 ```sh
 cargo run --release
@@ -77,7 +75,7 @@ DEFMT_LOG=trace cargo run
 
 If you wish you use the on-board LED or the WiFi/BT module you will need to flash the module firmware.
 
-`NOTE: By default firmware is placed at the 3MiB mark in ROM`
+`NOTE: By default firmware is placed at the 3.5MiB mark in ROM`
 
 For WiFi + Bluetooth firmware
 
