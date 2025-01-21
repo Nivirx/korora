@@ -5,25 +5,34 @@ version = "0.1.0"
 license = "MIT"
 
 [dependencies]
+# arch specific libraries
 cortex-m = { version = "0.7", features = ["inline-asm", "critical-section"] }
-cortex-m-rt = "0.7"
+cortex-m-rt = { version = "0.7", features = ["zero-init-ram"] }
 pio-proc = { version = "0.2.2" }
 pio = { version = "0.2.1" }
 
+embedded-hal = { version = "1.0", features = ['defmt-03'] }
+
+# I think rp235x-hal re-exports rp-binary info?
 rp-binary-info = { version = "0.1.0" }
 rp235x-hal = { version = "0.2.0", features = [
     "defmt",
     "critical-section-impl",
     "binary-info",
+    "rom-func-cache",
+    "rt",
 ] }
 
+# debug tools/libraries
 defmt = "0.3"
 defmt-rtt = "0.4"
 panic-probe = { version = "0.3", features = ["print-defmt"] }
 
+# useful libraries
 static_cell = "2.1"
 portable-atomic = { version = "1.5", features = ["critical-section"] }
 rand = { version = "0.8.5", default-features = false }
+smallvec = "1.13.2"
 
 # cargo build/run
 [profile.dev]
@@ -31,33 +40,19 @@ codegen-units = 1
 debug = 2
 debug-assertions = true
 incremental = false
-opt-level = 3
+opt-level = 1
 overflow-checks = true
 
 # cargo build/run --release
 [profile.release]
 codegen-units = 1
-debug = 2
+debug = 0
 debug-assertions = false
 incremental = false
 lto = 'fat'
 opt-level = 3
 overflow-checks = false
-
-# do not optimize proc-macro crates = faster builds from scratch
-[profile.dev.build-override]
-codegen-units = 8
-debug = false
-debug-assertions = false
-opt-level = 0
-overflow-checks = false
-
-[profile.release.build-override]
-codegen-units = 8
-debug = false
-debug-assertions = false
-opt-level = 0
-overflow-checks = false
+strip = 'debuginfo'
 
 # cargo test
 [profile.test]
@@ -65,7 +60,7 @@ codegen-units = 1
 debug = 2
 debug-assertions = true
 incremental = false
-opt-level = 3
+opt-level = 1
 overflow-checks = true
 
 # cargo test --release
