@@ -1,0 +1,35 @@
+// The format of this file is specified in https://probe.rs/docs/tools/debugger/#start-a-debug-session-with-minimum-configuration
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "preLaunchTask": "rust: cargo build",
+            "type": "probe-rs-debug",
+            "request": "launch",
+            "name": "rp2350-project",
+            "cwd": "${workspaceFolder}",
+            "chip": "rp2350a",
+            "connectUnderReset": false,
+            "speed": 4000,
+            "runtimeExecutable": "probe-rs",
+            "runtimeArgs": [
+                "dap-server"
+            ],
+            "flashingConfig": {
+                "flashingEnabled": true,
+                "haltAfterReset": false
+            },
+            "coreConfigs": [
+                {
+                    "coreIndex": 0,
+                    "programBinary": "target/thumbv8m.main-none-eabihf/debug/rp2350-project",
+                    "rttEnabled": true
+                    // Uncomment this if you have the svd
+                    // "svdFile": "./.vscode/rp2350.svd",
+                }
+            ],
+            "consoleLogLevel": "Info", //Error, Warn, Info, Debug, Trace
+            "wireProtocol": "Swd"
+        }
+    ]
+}
