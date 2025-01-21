@@ -1,10 +1,10 @@
 MEMORY {
     /*
      * Pico2W has 4MB of on-board flash
-     * split 3MB for code/data and 1MB for WiFI firmware
+     * split 3.5MB for code/data and 512KB for WiFI/BT firmware
      */
-    FLASH : ORIGIN = 0x10000000, LENGTH = 3076K
-    FIRMW : ORIGIN = 0x10300000, LENGTH = 1024K
+    FLASH : ORIGIN = 0x10000000, LENGTH = 3588K
+    FIRMW : ORIGIN = 0x10380000, LENGTH = 512K
     /*
      * RAM consists of 8 banks, SRAM0-SRAM7, with a striped mapping.
      * This is usually good for performance, as it distributes load on
@@ -20,6 +20,18 @@ MEMORY {
     SRAM4 : ORIGIN = 0x20080000, LENGTH = 4K
     SRAM5 : ORIGIN = 0x20081000, LENGTH = 4K
 }
+
+/*
+ * Use bank 8 for socket0 stack 
+ */
+_stack_start = ORIGIN(SRAM4) + LENGTH(SRAM4);
+_stack_end = ORIGIN(SRAM4); 
+
+/*
+ * Use bank 9 for socket1 stack 
+ */
+ _stack_start1 = ORIGIN(SRAM5) + LENGTH(SRAM5);
+_stack_end1 = ORIGIN(SRAM5); 
 
 SECTIONS {
     /* ### Boot ROM info
