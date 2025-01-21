@@ -4,11 +4,25 @@ use cortex_m_rt::entry;
 use defmt::*;
 use rp235x_hal::block::ImageDef;
 use rp_binary_info as binary_info;
+
+/*
+TODO: in the future release builds shouldn't be using panic_probe as the panic provider
+
+use core::panic::PanicInfo;
+
+#[inline(never)]
+#[panic_handler]
+fn panic(_info: &PanicInfo) -> ! {
+    loop {}
+}
+
+*/
+
 use {defmt_rtt as _, panic_probe as _};
 
 #[link_section = ".start_block"]
 #[used]
-pub static IMAGE_DEF: ImageDef = ImageDef::secure_exe();
+pub static IMAGE_DEF: ImageDef = ImageDef::non_secure_exe();
 
 // Program metadata for `picotool info`.
 // This isn't needed, but it's recomended to have these minimal entries.
@@ -21,9 +35,9 @@ pub static PICOTOOL_ENTRIES: [binary_info::EntryAddr; 4] = [
     binary_info::rp_program_build_attribute!(),
 ];
 
-const WIFI_FIRMWARE_BASE: u32 = 0x1030_0000;
-const BT_FIRMWARE_BASE: u32 = 0x1034_0000;
-const CLM_FIRMWARE_BASE: u32 = 0x1034_4000;
+const WIFI_FIRMWARE_BASE: u32 = 0x1038_0000;
+const BT_FIRMWARE_BASE: u32 = 0x103C_0000;
+const CLM_FIRMWARE_BASE: u32 = 0x103C_4000;
 
 #[entry]
 fn main() -> ! {
