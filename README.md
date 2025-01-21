@@ -26,6 +26,8 @@ cargo run --release
  *or*
 - the [`pico-sdk` repo](https://github.com/raspberrypi/pico-sdk) and [`picotool` repo](https://github.com/raspberrypi/picotool) built, we currently expect the binary at `/opt/picotool`
 
+`NOTE: I use a J-link SEGGER probe to connect, when connecting to ARMv8 targets in SWD mode I need to launch Ozone/JlinkExe before using probe-rs to flash or debug the connected RP235x, otherwise I get DAP_FAULT's`
+
 ## Installation of development dependencies
 
 ```sh

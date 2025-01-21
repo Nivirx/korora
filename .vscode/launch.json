@@ -6,9 +6,9 @@
             "preLaunchTask": "rust: cargo build",
             "type": "probe-rs-debug",
             "request": "launch",
-            "name": "rp2350-project",
+            "name": "korora",
             "cwd": "${workspaceFolder}",
-            "chip": "rp2350a",
+            "chip": "RP235x",
             "connectUnderReset": false,
             "speed": 4000,
             "runtimeExecutable": "probe-rs",
@@ -22,7 +22,7 @@
             "coreConfigs": [
                 {
                     "coreIndex": 0,
-                    "programBinary": "target/thumbv8m.main-none-eabihf/debug/rp2350-project",
+                    "programBinary": "target/thumbv8m.main-none-eabihf/debug/korora",
                     "rttEnabled": true
                     // Uncomment this if you have the svd
                     // "svdFile": "./.vscode/rp2350.svd",

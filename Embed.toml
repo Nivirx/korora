@@ -2,19 +2,11 @@
 # https://github.com/probe-rs/probe-rs/blob/master/probe-rs-tools/src/bin/probe-rs/cmd/cargo_embed/config/default.toml
 [default.probe]
 protocol = "Swd"
-speed = 30000
-# If you only have one probe cargo embed will pick automatically
-# Otherwise: add your probe's VID/PID/serial to filter
-
-## rust-dap
-# usb_vid = "6666"
-# usb_pid = "4444"
-# serial = "test"
-
+speed = 20000
 
 [default.flashing]
 enabled = true
-verify = true
+verify = false
 
 [default.reset]
 enabled = true
@@ -23,7 +15,7 @@ halt_afterwards = false
 [default.general]
 chip = "RP235x"
 log_level = "WARN"
-connect_under_reset = false
+connect_under_reset = true
 
 [default.rtt]
 enabled = true
