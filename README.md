@@ -10,6 +10,10 @@ It includes all of the `knurling-rs` tooling as showcased in <https://github.com
 cargo run --release
 ```
 
+## Why Korora
+
+ [Wikipedia](https://en.wikipedia.org/wiki/Little_penguin)
+
 ## Requirements
   
 - The standard Rust tooling (cargo, rustup) which you can install from <https://rustup.rs/>
