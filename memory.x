@@ -23,7 +23,7 @@ MEMORY {
      * of access times.
      * Example: Separate stacks for core0 and core1.
      */
-    SRAM4 : ORIGIN = 0x20080000, LENGTH = 4K
+    SRAM4 : ORIGIN = 0x20080000, LENGTH = 4K   
     SRAM5 : ORIGIN = 0x20081000, LENGTH = 4K   
 }
 
@@ -48,10 +48,10 @@ MEMORY {
 */
 
 PROVIDE(_stext = ORIGIN(FLASH));
-PROVIDE(_stack_start = ORIGIN(RAM) + LENGTH(RAM));
+PROVIDE(_stack_start = ORIGIN(SRAM4) + LENGTH(SRAM4));
 PROVIDE(_max_hart_id = 0);
-PROVIDE(_hart_stack_size = 2K);
-PROVIDE(_heap_size = 0);
+PROVIDE(_hart_stack_size = 4K - 1);
+PROVIDE(_heap_size = 256K);
 
 PROVIDE(InstructionMisaligned = ExceptionHandler);
 PROVIDE(InstructionFault = ExceptionHandler);
@@ -199,7 +199,7 @@ SECTIONS
     _estack = .;
     . = ABSOLUTE(_stack_start);
     _sstack = .;
-  } > RAM
+  } > SRAM4
 
   /* fake output .got section */
   /* Dynamic relocations are unsupported. This section is only used to detect
