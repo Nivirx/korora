@@ -6,33 +6,38 @@ license = "MIT"
 
 [dependencies]
 # arch specific libraries
-cortex-m = { version = "0.7", features = ["inline-asm", "critical-section"] }
-cortex-m-rt = { version = "0.7", features = ["zero-init-ram"] }
-pio-proc = { version = "0.2.2" }
-pio = { version = "0.2.1" }
+#cortex-m = { version = "0.7", features = ["inline-asm", "critical-section"] }
+#cortex-m-rt = { version = "0.7", features = ["zero-init-ram"] }
+#pio-proc = { version = "0.2" }
+#pio = { version = "0.2" }
+
+riscv = { version = "0.12.1" }
+riscv-rt = { version = "0.12.2" }
+panic-halt = { version = "0.2" }
 
 embedded-hal = { version = "1.0", features = ['defmt-03'] }
+embedded-hal-bus = { version = "0.2", features = ['defmt-03'] }
 
 # I think rp235x-hal re-exports rp-binary info?
-rp-binary-info = { version = "0.1.0" }
-rp235x-hal = { version = "0.2.0", features = [
-    "defmt",
+#rp-binary-info = { version = "0.1" }
+rp235x-pac = { version = "0.1" }
+rp235x-hal = { version = "0.2", features = [
     "critical-section-impl",
-    "binary-info",
-    "rom-func-cache",
     "rt",
+    "defmt",
+    "binary-info",
 ] }
 
 # debug tools/libraries
 defmt = "0.3"
 defmt-rtt = "0.4"
-panic-probe = { version = "0.3", features = ["print-defmt"] }
+#panic-probe = { version = "0.3", features = ["print-defmt"] }
 
 # useful libraries
 static_cell = "2.1"
-portable-atomic = { version = "1.5", features = ["critical-section"] }
-rand = { version = "0.8.5", default-features = false }
-smallvec = "1.13.2"
+#portable-atomic = { version = "1.5", features = ["critical-section"] }
+rand = { version = "0.8", default-features = false }
+smallvec = "1.13"
 
 # cargo build/run
 [profile.dev]

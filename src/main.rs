@@ -1,24 +1,13 @@
 #![no_std]
 #![no_main]
-use cortex_m_rt::entry;
 use defmt::*;
 use rp235x_hal::block::ImageDef;
-use rp_binary_info as binary_info;
+use rp235x_hal::{binary_info, entry};
 
-/*
-TODO: in the future release builds shouldn't be using panic_probe as the panic provider
+use defmt_rtt as _;
+use panic_halt as _;
 
-use core::panic::PanicInfo;
-
-#[inline(never)]
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
-
-*/
-
-use {defmt_rtt as _, panic_probe as _};
+// Also need a Global Allocator!!!
 
 #[link_section = ".start_block"]
 #[used]
@@ -45,8 +34,8 @@ fn main() -> ! {
     let _btfw = unsafe { core::slice::from_raw_parts(BT_FIRMWARE_BASE as *const u8, 6164) };
     let _clm = unsafe { core::slice::from_raw_parts(CLM_FIRMWARE_BASE as *const u8, 984) };
 
-    info!("Hello from 'minimal' Rust land!");
+    info!("A Rusty 'Hello!' from RISC-V land!");
     loop {
-        cortex_m::asm::nop();
+        riscv::asm::nop();
     }
 }

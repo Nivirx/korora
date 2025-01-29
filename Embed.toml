@@ -15,7 +15,7 @@ halt_afterwards = false
 [default.general]
 chip = "RP235x"
 log_level = "WARN"
-connect_under_reset = true
+connect_under_reset = false
 
 [default.rtt]
 enabled = true
